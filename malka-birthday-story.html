@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Malka 🌊</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --sand: #f5e6c8;
+      --ocean: #4eb8d4;
+      --deep: #1a6e8a;
+      --foam: #e8f7fb;
+      --coffee: #6b3f2a;
+      --latte: #c9956b;
+      --bloom: #ff8fab;
+      --petal: #ffc8d6;
+      --canvas: #fdf6ee;
+      --text: #2c1a12;
+      --gold: #e8a040;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--canvas);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* COVER */
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #0a2e45 0%, #1a6e8a 45%, #4eb8d4 70%, #a8dce8 85%, var(--sand) 100%);
+    }
+
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      animation: twinkle ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: .2;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.4);
+      }
+    }
+
+    .waves-cover {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .waves-cover svg {
+      display: block;
+      width: 100%;
+    }
+
+    .cover-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 40px 24px 160px;
+    }
+
+    .cover-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: .9rem;
+      letter-spacing: .35em;
+      color: #a8dce8;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp .8s .3s ease both;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 6rem);
+      color: white;
+      line-height: 1.05;
+      margin: 12px 0 8px;
+      opacity: 0;
+      animation: fadeUp .9s .6s ease both;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, .25);
+    }
+
+    .cover-name {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(2.2rem, 8vw, 4.5rem);
+      color: var(--gold);
+      opacity: 0;
+      animation: fadeUp .9s .9s ease both;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, .2);
+    }
+
+    .scroll-hint {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp .8s 1.5s ease both;
+      color: #a8dce8;
+      font-size: .8rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .scroll-arrow {
+      width: 28px;
+      height: 28px;
+      border-right: 2px solid #a8dce8;
+      border-bottom: 2px solid #a8dce8;
+      transform: rotate(45deg);
+      animation: bounce 1.4s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: rotate(45deg) translateY(0);
+      }
+
+      50% {
+        transform: rotate(45deg) translateY(8px);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* SCENE BASE */
+    .scene {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 24px;
+    }
+
+    .scene-inner {
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity .9s ease, transform .9s ease;
+    }
+
+    .scene-inner.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .chapter {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: .72rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .scene-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .scene-body {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      line-height: 1.85;
+    }
+
+    .emoji-big {
+      font-size: clamp(3.5rem, 10vw, 5.5rem);
+      display: block;
+      margin-bottom: 20px;
+      animation: floatEmoji 3.5s ease-in-out infinite;
+    }
+
+    @keyframes floatEmoji {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      border-radius: 99px;
+      margin: 24px auto;
+    }
+
+    /* SCENE 1 BEACH */
+    .scene-beach {
+      background: linear-gradient(180deg, #87ceeb 0%, #b8e4f2 40%, #d4f0f7 60%, #f5e6c8 100%);
+    }
+
+    .scene-beach .chapter {
+      color: var(--deep);
+    }
+
+    .scene-beach .scene-title {
+      color: var(--deep);
+    }
+
+    .scene-beach .scene-body {
+      color: #1a4a5a;
+    }
+
+    .scene-beach .divider {
+      background: linear-gradient(90deg, var(--ocean), var(--deep));
+    }
+
+    .seagull {
+      position: absolute;
+      font-size: 1.4rem;
+      opacity: .6;
+      animation: glide linear infinite;
+    }
+
+    @keyframes glide {
+      0% {
+        transform: translateX(-80px) translateY(0);
+      }
+
+      50% {
+        transform: translateX(50vw) translateY(-20px);
+      }
+
+      100% {
+        transform: translateX(110vw) translateY(5px);
+      }
+    }
+
+    .wave-strip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+    }
+
+    /* SCENE 2 FLOWERS */
+    .scene-flowers {
+      background: linear-gradient(160deg, #fff0f5 0%, #ffe4ed 50%, #ffd6e7 100%);
+    }
+
+    .scene-flowers .chapter {
+      color: #c2185b;
+    }
+
+    .scene-flowers .scene-title {
+      color: #880e4f;
+    }
+
+    .scene-flowers .scene-body {
+      color: #5d1035;
+    }
+
+    .scene-flowers .divider {
+      background: linear-gradient(90deg, var(--bloom), var(--petal));
+    }
+
+    .petal-float {
+      position: absolute;
+      font-size: 1.5rem;
+      pointer-events: none;
+      animation: petalDrift linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes petalDrift {
+      0% {
+        transform: translateY(-40px) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: .9;
+      }
+
+      90% {
+        opacity: .7;
+      }
+
+      100% {
+        transform: translateY(105vh) rotate(540deg);
+        opacity: 0;
+      }
+    }
+
+    /* SCENE 3 COFFEE */
+    .scene-coffee {
+      background: linear-gradient(160deg, #2c1a12 0%, #4a2c1a 50%, #6b3f2a 100%);
+    }
+
+    .scene-coffee .chapter {
+      color: var(--latte);
+    }
+
+    .scene-coffee .scene-title {
+      color: #f5e6c8;
+    }
+
+    .scene-coffee .scene-body {
+      color: #d4b896;
+    }
+
+    .scene-coffee .divider {
+      background: linear-gradient(90deg, var(--latte), var(--gold));
+    }
+
+    .steam-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .cup-emoji {
+      font-size: clamp(4rem, 12vw, 6rem);
+    }
+
+    .steam {
+      position: absolute;
+      top: -10px;
+      width: 4px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, .55);
+      animation: steamRise ease-in-out infinite;
+    }
+
+    @keyframes steamRise {
+      0% {
+        transform: translateY(0) scaleX(1);
+        opacity: .6;
+      }
+
+      100% {
+        transform: translateY(-50px) scaleX(2.5);
+        opacity: 0;
+      }
+    }
+
+    /* SCENE 4 ART */
+    .scene-art {
+      background: linear-gradient(160deg, #fdf6ee 0%, #fdebd0 60%, #fad7a0 100%);
+    }
+
+    .scene-art .chapter {
+      color: #8d5524;
+    }
+
+    .scene-art .scene-title {
+      color: #5d3317;
+    }
+
+    .scene-art .scene-body {
+      color: #7b4926;
+    }
+
+    .scene-art .divider {
+      background: linear-gradient(90deg, var(--gold), #e88040);
+    }
+
+    .stroke {
+      position: absolute;
+      border-radius: 999px;
+      opacity: .18;
+      transform-origin: left center;
+    }
+
+    /* SCENE 5 FINALE */
+    .scene-finale {
+      background: linear-gradient(160deg, #0a2e45 0%, #1a6e8a 55%, #4eb8d4 100%);
+      min-height: 100vh;
+    }
+
+    .scene-finale .chapter {
+      color: #a8dce8;
+    }
+
+    .scene-finale .scene-title {
+      color: white;
+    }
+
+    .scene-finale .scene-body {
+      color: #c8edf5;
+    }
+
+    .scene-finale .divider {
+      background: linear-gradient(90deg, var(--gold), white);
+    }
+
+    .heart-float {
+      position: absolute;
+      pointer-events: none;
+      animation: heartUp linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes heartUp {
+      0% {
+        transform: translateY(0) scale(.6);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-90vh) scale(1.3);
+        opacity: 0;
+      }
+    }
+
+    .final-card {
+      background: rgba(255, 255, 255, .1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 28px;
+      padding: 36px 32px;
+      margin-top: 32px;
+      display: inline-block;
+      max-width: 480px;
+      width: 100%;
+    }
+
+    .final-card p {
+      color: white;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    .final-card .sig {
+      margin-top: 18px;
+      font-style: normal;
+      font-weight: 700;
+      color: var(--gold);
+      font-size: .9rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    /* PROGRESS BAR */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--bloom), var(--ocean));
+      z-index: 100;
+      transition: width .1s;
+      width: 0%;
+    }
+
+    /* SOUND INDICATOR */
+    .sound-toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: rgba(0, 0, 0, .72);
+      backdrop-filter: blur(8px);
+      color: white;
+      font-size: .82rem;
+      letter-spacing: .08em;
+      padding: 10px 22px;
+      border-radius: 999px;
+      z-index: 200;
+      transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), opacity .4s;
+      opacity: 0;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .sound-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* UNMUTE BUTTON */
+    .unmute-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      z-index: 200;
+      background: rgba(0, 0, 0, .6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, .2);
+      color: white;
+      font-size: .85rem;
+      padding: 10px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .2s;
+    }
+
+    .unmute-btn:hover {
+      background: rgba(0, 0, 0, .85);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="sound-toast" id="soundToast"></div>
+  <button class="unmute-btn" id="unmuteBtn" onclick="toggleMute()">🔊 Sound On</button>
+
+  <!-- COVER -->
+  <section class="cover">
+    <div class="stars" id="stars"></div>
+    <div class="cover-content">
+      <p class="cover-eyebrow">A little story for</p>
+      <h1 class="cover-title">Happy Birthday</h1>
+      <h2 class="cover-name">Malka</h2>
+      <div class="scroll-hint"><span>Scroll to begin</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </div>
+    <div class="waves-cover">
+      <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="120">
+        <path fill="#f5e6c8" fill-opacity=".6"
+          d="M0,64 C240,110 480,20 720,64 C960,110 1200,20 1440,64 L1440,120 L0,120 Z" />
+        <path fill="#f5e6c8" d="M0,80 C360,120 720,40 1080,80 C1260,100 1380,72 1440,80 L1440,120 L0,120 Z" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- SCENE 1 BEACH -->
+  <section class="scene scene-beach" data-sound="beach" data-label="🌊 Ocean Waves">
+    <span class="seagull" style="top:18%;animation-duration:14s;animation-delay:0s;">🕊️</span>
+    <span class="seagull" style="top:30%;animation-duration:18s;animation-delay:5s;font-size:1rem;">🕊️</span>
+    <div class="scene-inner">
+      <span class="chapter">Chapter One</span>
+      <span class="emoji-big">🌊</span>
+      <h2 class="scene-title">Where the Ocean Knows Your Name</h2>
+      <div class="divider"></div>
+      <p class="scene-body">Every morning you wake up, the sea is already waiting for you —<br>calling your name in the
+        rhythm of its waves.<br><br>You walk barefoot on warm sand, letting the foam kiss your feet,<br>watching the
+        horizon glow gold and endless.<br><br><em>This is where you are most yourself.</em></p>
+    </div>
+    <div class="wave-strip">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="80">
+        <path fill="#f5e6c8" d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,32 1440,40 L1440,80 L0,80 Z" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- SCENE 2 FLOWERS -->
+  <section class="scene scene-flowers" id="petals-scene" data-sound="flowers" data-label="🌸 Garden Breeze">
+    <div class="scene-inner">
+      <span class="chapter">Chapter Two</span>
+      <span class="emoji-big">🌸</span>
+      <h2 class="scene-title">A Garden That Blooms for You</h2>
+      <div class="divider"></div>
+      <p class="scene-body">Flowers lean toward you the way sunflowers chase the sun.<br>There's something about you —
+        the way you pause to really <em>see</em> a bloom,<br>to notice the curve of a petal, the blush of a
+        rose.<br><br>You don't just love flowers — you understand them.<br><br>And today, every petal in the world is
+        celebrating <em>you</em>.</p>
+    </div>
+  </section>
+
+  <!-- SCENE 3 COFFEE -->
+  <section class="scene scene-coffee" data-sound="coffee" data-label="☕ Cozy Café">
+    <div class="scene-inner">
+      <span class="chapter">Chapter Three</span>
+      <div class="steam-wrap">
+        <span class="cup-emoji">☕</span>
+        <div class="steam" style="left:38%;height:22px;animation-duration:1.8s;animation-delay:0s;"></div>
+        <div class="steam" style="left:50%;height:30px;animation-duration:2.2s;animation-delay:.4s;"></div>
+        <div class="steam" style="left:62%;height:20px;animation-duration:1.6s;animation-delay:.8s;"></div>
+      </div>
+      <h2 class="scene-title">The Perfect Slow Morning</h2>
+      <div class="divider"></div>
+      <p class="scene-body">You wrap both hands around a warm cup,<br>breathe in the deep, rich aroma that
+        says:<br><em>this moment is yours.</em><br><br>No rush. Just you, your thoughts, and the quiet magic<br>that
+        lives inside a perfectly brewed cup of coffee.<br><br>Some people collect moments — you collect
+        <em>mornings</em>.
+      </p>
+    </div>
+  </section>
+
+  <!-- SCENE 4 ART -->
+  <section class="scene scene-art" data-sound="art" data-label="🎨 Creative Flow">
+    <div class="stroke" style="width:320px;height:60px;background:#e88040;top:12%;left:-40px;transform:rotate(-6deg);">
+    </div>
+    <div class="stroke" style="width:200px;height:40px;background:#e84080;top:25%;right:-20px;transform:rotate(8deg);">
+    </div>
+    <div class="stroke" style="width:260px;height:50px;background:#4eb8d4;bottom:20%;left:10%;transform:rotate(-4deg);">
+    </div>
+    <div class="stroke" style="width:180px;height:35px;background:#ffd166;bottom:35%;right:5%;transform:rotate(5deg);">
+    </div>
+    <div class="scene-inner">
+      <span class="chapter">Chapter Four</span>
+      <span class="emoji-big">🎨</span>
+      <h2 class="scene-title">You See the World in Color</h2>
+      <div class="divider"></div>
+      <p class="scene-body">Where others see a blank canvas, you see possibility.<br>Your hands know how to take
+        something ordinary<br>and make it <em>alive</em> — full of texture, story, and soul.<br><br>Art isn't something
+        you do.<br>It's something you <em>are</em>.<br><br>Every brushstroke, every creation — a little piece of
+        Malka<br>left beautifully in the world.</p>
+    </div>
+  </section>
+
+  <!-- SCENE 5 FINALE -->
+  <section class="scene scene-finale" id="hearts-scene" data-sound="finale" data-label="🎂 Birthday Song">
+    <div class="scene-inner">
+      <span class="chapter">Chapter Five</span>
+      <span class="emoji-big">🎂</span>
+      <h2 class="scene-title">Today Is All Yours, Malka</h2>
+      <div class="divider"></div>
+      <p class="scene-body">A girl who loves the ocean, flowers, coffee, and art —<br>a girl who finds beauty in
+        everything she touches.<br><br><em>Happy Birthday.</em><br>May this year bring you waves of joy,<br>gardens of
+        laughter, mornings of warmth,<br>and a canvas full of your most beautiful dreams.</p>
+      <div class="final-card">
+        <p>"Keep chasing sunsets, keep collecting flowers,<br>keep savoring those slow mornings,<br>keep creating
+          beautiful things —<br>because the world is brighter with you in it."</p>
+        <p class="sig">— With all the love 💛</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // ── Stars ──
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 80; i++) { const s = document.createElement('div'); s.style.cssText = `position:absolute;width:${1 + Math.random() * 2.5}px;height:${1 + Math.random() * 2.5}px;border-radius:50%;background:white;top:${Math.random() * 100}%;left:${Math.random() * 100}%;animation:twinkle ${2 + Math.random() * 3}s ${Math.random() * 4}s ease-in-out infinite;`; starsEl.appendChild(s); }
+
+    // ── Petals ──
+    const petalScene = document.getElementById('petals-scene');
+    const petalChars = ['🌸', '🌺', '🌷', '🌹', '💐'];
+    for (let i = 0; i < 18; i++) { const p = document.createElement('span'); p.className = 'petal-float'; p.textContent = petalChars[Math.floor(Math.random() * petalChars.length)]; p.style.cssText = `left:${Math.random() * 100}%;animation-duration:${6 + Math.random() * 6}s;animation-delay:${Math.random() * 8}s;font-size:${1 + Math.random()}rem;`; petalScene.appendChild(p); }
+
+    // ── Hearts ──
+    const heartsScene = document.getElementById('hearts-scene');
+    const heartChars = ['💛', '💙', '🤍', '💖', '✨', '🌊'];
+    for (let i = 0; i < 20; i++) { const h = document.createElement('span'); h.className = 'heart-float'; h.textContent = heartChars[Math.floor(Math.random() * heartChars.length)]; h.style.cssText = `left:${Math.random() * 100}%;bottom:${Math.random() * 20}%;font-size:${1 + Math.random() * 1.2}rem;animation-duration:${5 + Math.random() * 5}s;animation-delay:${Math.random() * 6}s;`; heartsScene.appendChild(h); }
+
+    // ── Progress bar ──
+    const bar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => { const max = document.body.scrollHeight - window.innerHeight; bar.style.width = (window.scrollY / max * 100) + '%'; });
+
+    // ══════════════════════════════
+    //   AUDIO ENGINE (Web Audio API)
+    // ══════════════════════════════
+    const ctx_holder = { ctx: null };
+    let muted = false;
+    let currentNode = null;
+    let currentGain = null;
+
+    function getCtx() {
+      if (!ctx_holder.ctx) ctx_holder.ctx = new (window.AudioContext || window.webkitAudioContext)();
+      return ctx_holder.ctx;
+    }
+
+    function toggleMute() {
+      muted = !muted;
+      document.getElementById('unmuteBtn').textContent = muted ? '🔇 Sound Off' : '🔊 Sound On';
+      if (muted && currentGain) currentGain.gain.setTargetAtTime(0, getCtx().currentTime, .3);
+    }
+
+    function showToast(label) {
+      const t = document.getElementById('soundToast');
+      t.textContent = 'Now playing: ' + label;
+      t.classList.add('show');
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+    function fadeOut(gainNode, dur = 1.2) {
+      if (!gainNode) return;
+      const ctx = getCtx();
+      gainNode.gain.setTargetAtTime(0, ctx.currentTime, dur / 4);
+      setTimeout(() => { try { gainNode.disconnect(); } catch (e) { } }, dur * 1000 + 200);
+    }
+
+    // ── Sound generators ──
+    function makeOscillator(type, freq, gainVal, dur) {
+      const ctx = getCtx();
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+      osc.type = type; osc.frequency.value = freq;
+      g.gain.value = 0;
+      osc.connect(g); g.connect(ctx.destination);
+      osc.start();
+      g.gain.setTargetAtTime(gainVal, ctx.currentTime, .15);
+      return { osc, g };
+    }
+
+    // 1. Ocean: pink noise + slow LFO filter
+    function playOcean() {
+      const ctx = getCtx();
+      const bufSize = ctx.sampleRate * 4;
+      const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+      const data = buf.getChannelData(0);
+      let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+      for (let i = 0; i < bufSize; i++) {
+        const white = Math.random() * 2 - 1;
+        b0 = .99886 * b0 + white * .0555179; b1 = .99332 * b1 + white * .0750759;
+        b2 = .96900 * b2 + white * .1538520; b3 = .86650 * b3 + white * .3104856;
+        b4 = .55000 * b4 + white * .5329522; b5 = -.7616 * b5 - white * .0168980;
+        data[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * .5362) * 0.11;
+        b6 = white * .115926;
+      }
+      const src = ctx.createBufferSource(); src.buffer = buf; src.loop = true;
+      const filter = ctx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 400;
+      const lfo = ctx.createOscillator(); const lfoGain = ctx.createGain();
+      lfo.frequency.value = 0.08; lfoGain.gain.value = 200;
+      lfo.connect(lfoGain); lfoGain.connect(filter.frequency); lfo.start();
+      const g = ctx.createGain(); g.gain.value = 0;
+      src.connect(filter); filter.connect(g); g.connect(ctx.destination);
+      src.start();
+      g.gain.setTargetAtTime(muted ? 0 : .55, ctx.currentTime, .8);
+      return g;
+    }
+
+    // 2. Flowers: gentle wind chime arpeggios
+    function playFlowers() {
+      const ctx = getCtx();
+      const masterG = ctx.createGain(); masterG.gain.value = 0; masterG.connect(ctx.destination);
+      const notes = [523.25, 659.25, 783.99, 1046.5, 1318.5];
+      let i = 0;
+      function chime() {
+        if (masterG.gain.value < .001 && i > 4) return;
+        const osc = ctx.createOscillator(); const g = ctx.createGain();
+        osc.type = 'sine'; osc.frequency.value = notes[i % notes.length];
+        g.gain.value = 0;
+        osc.connect(g); g.connect(masterG);
+        osc.start();
+        g.gain.setTargetAtTime(.18, ctx.currentTime, .02);
+        g.gain.setTargetAtTime(0, ctx.currentTime + .12, .3);
+        osc.stop(ctx.currentTime + 1.2);
+        i++; setTimeout(chime, 320 + Math.random() * 500);
+      }
+      masterG.gain.setTargetAtTime(muted ? 0 : 1, ctx.currentTime, .6);
+      chime();
+      return masterG;
+    }
+
+    // 3. Coffee: low warm hum + occasional soft crackle (fireplace-café feel)
+    function playCoffee() {
+      const ctx = getCtx();
+      const masterG = ctx.createGain(); masterG.gain.value = 0; masterG.connect(ctx.destination);
+      // warm hum
+      const osc = ctx.createOscillator(); const oGain = ctx.createGain();
+      osc.type = 'sine'; osc.frequency.value = 55; oGain.gain.value = .08;
+      osc.connect(oGain); oGain.connect(masterG); osc.start();
+      // brown noise (crackling fire/café ambience)
+      const bufSize = ctx.sampleRate * 3;
+      const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+      const d = buf.getChannelData(0); let last = 0;
+      for (let i = 0; i < bufSize; i++) { const w = Math.random() * 2 - 1; last = (last + .02 * w) / .999; d[i] = last * .4; }
+      const nSrc = ctx.createBufferSource(); nSrc.buffer = buf; nSrc.loop = true;
+      const f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 250;
+      const nG = ctx.createGain(); nG.gain.value = .28;
+      nSrc.connect(f); f.connect(nG); nG.connect(masterG); nSrc.start();
+      masterG.gain.setTargetAtTime(muted ? 0 : 1, ctx.currentTime, .8);
+      return masterG;
+    }
+
+    // 4. Art: playful pluck melody (pentatonic)
+    function playArt() {
+      const ctx = getCtx();
+      const masterG = ctx.createGain(); masterG.gain.value = 0; masterG.connect(ctx.destination);
+      const scale = [261.63, 293.66, 329.63, 392, 440, 523.25, 587.33];
+      let step = 0;
+      function pluck() {
+        const freq = scale[step % scale.length] * (step > 6 ? 2 : 1);
+        const osc = ctx.createOscillator(); const g = ctx.createGain();
+        osc.type = 'triangle'; osc.frequency.value = freq;
+        g.gain.value = 0; osc.connect(g); g.connect(masterG);
+        osc.start();
+        g.gain.setTargetAtTime(.15, ctx.currentTime, .01);
+        g.gain.setTargetAtTime(0, ctx.currentTime + .08, .22);
+        osc.stop(ctx.currentTime + .8);
+        step++; setTimeout(pluck, 260 + Math.random() * 340);
+      }
+      masterG.gain.setTargetAtTime(muted ? 0 : 1, ctx.currentTime, .6);
+      pluck();
+      return masterG;
+    }
+
+    // 5. Finale: simple happy birthday tune
+    function playFinale() {
+      const ctx = getCtx();
+      const masterG = ctx.createGain(); masterG.gain.value = 0; masterG.connect(ctx.destination);
+      // Happy Birthday melody: note,duration pairs (frequency, seconds)
+      const C4 = 261.63, D4 = 293.66, E4 = 329.63, F4 = 349.23, G4 = 392, A4 = 440, B4 = 493.88, C5 = 523.25, D5 = 587.33;
+      const melody = [
+        [C4, .3], [C4, .15], [D4, .45], [C4, .45], [F4, .45], [E4, .9],
+        [C4, .3], [C4, .15], [D4, .45], [C4, .45], [G4, .45], [F4, .9],
+        [C4, .3], [C4, .15], [C5, .45], [A4, .45], [F4, .45], [E4, .45], [D4, .9],
+        [B4, .3], [B4, .15], [A4, .45], [F4, .45], [G4, .45], [F4, 1.1]
+      ];
+      let t = ctx.currentTime + .5;
+      melody.forEach(([freq, dur]) => {
+        const osc = ctx.createOscillator(); const g = ctx.createGain();
+        osc.type = 'sine'; osc.frequency.value = freq;
+        g.gain.value = 0; osc.connect(g); g.connect(masterG);
+        osc.start(t);
+        g.gain.setTargetAtTime(.22, t, .02);
+        g.gain.setTargetAtTime(0, t + dur * .75, .06);
+        osc.stop(t + dur + .1);
+        t += dur;
+      });
+      masterG.gain.setTargetAtTime(muted ? 0 : 1, ctx.currentTime, .5);
+      return masterG;
+    }
+
+    const soundMap = {
+      beach: { fn: playOcean, label: '🌊 Ocean Waves' },
+      flowers: { fn: playFlowers, label: '🌸 Garden Breeze' },
+      coffee: { fn: playCoffee, label: '☕ Cozy Café' },
+      art: { fn: playArt, label: '🎨 Creative Flow' },
+      finale: { fn: playFinale, label: '🎂 Birthday Melody' },
+    };
+    const played = new Set();
+
+    // ── Intersection observer ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelector('.scene-inner')?.classList.add('visible');
+          const key = e.target.dataset.sound;
+          const label = e.target.dataset.label;
+          if (key && soundMap[key] && !played.has(key)) {
+            played.add(key);
+            // fade out previous
+            fadeOut(currentGain);
+            try {
+              currentGain = soundMap[key].fn();
+              showToast(label);
+            } catch (err) { console.warn('Audio error', err); }
+          }
+        }
+      });
+    }, { threshold: 0.35 });
+
+    document.querySelectorAll('.scene').forEach(el => observer.observe(el));
+
+    // resume audio ctx on first interaction
+    document.addEventListener('click', () => { if (ctx_holder.ctx?.state === 'suspended') ctx_holder.ctx.resume(); }, { once: true });
+    document.addEventListener('scroll', () => { if (ctx_holder.ctx?.state === 'suspended') ctx_holder.ctx.resume(); }, { once: true });
+  </script>
+</body>
+
+</html>
